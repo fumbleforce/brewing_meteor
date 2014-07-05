@@ -1,0 +1,63 @@
+@import "nib"
+
+body, html
+    margin: 0
+    padding 0
+    height: 100%
+    width: 100%
+    position: relative
+    overflow-y: auto
+    font-family: 'Josefin Slab', serif;
+
+    .foam
+        position: fixed
+        width: 100%
+        top: 0
+        background: cornsilk
+        height: 40px
+        z-index: 3
+
+    .brewer
+        position:fixed
+        width: 800px
+        margin: 0 0 0 -400px
+        left: 50%
+        z-index: 3
+
+
+    .content
+        z-index: 2
+        position: relative
+        width: 800px
+        margin: 0 auto
+        top: 40px
+        padding-top: 20px
+
+
+        .headline
+            text-align: center
+            width: 100%
+            margin-bottom: 50px
+            margin-top: 50px
+
+            h1
+                font-size: 100px
+
+            h4
+                font-size: 24px
+
+        .brew-list
+            
+            h2
+                width: 100%
+                text-align: center
+
+            table
+
+                tr
+                    td, th
+                        padding: 5px 15px
+
+                tbody
+                    tr:hover
+                        background: orange

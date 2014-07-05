@@ -1,0 +1,102 @@
+head
+    title brewing
+    
+    link(href='http://fonts.googleapis.com/css?family=Josefin+Slab' rel='stylesheet' type='text/css')
+    
+    script(src="/bubbles.js")
+
+body
+    .bubbles
+
+        button.bubble-toggle(style="display:none") Slå av bobler
+
+    .foam
+
+    .brewer
+        .col-md-6
+            .brewer-name Brygger: Jørgen
+        .col-md-3
+            .btn.btn-default Ny brygger
+        .col-md-3
+            .btn.btn-default Eksisterende brygger
+
+    .content
+        .page.frontpage
+            +frontpage
+
+        .page.newbrew(style="display:none")
+            +newbrew
+        
+
+template(name="newbrew")
+    +quickForm(collection="Brew" id="insertBrewForm" type="insert")
+
+template(name="frontpage")
+
+    .row.headline
+        h1 Ølbrygging
+        h4 I samarbeid med Åsen Bryggeri
+
+    .row.menu
+        
+        .new-brew-btn.btn.btn-default Nytt brygg
+        .old-brew-btn.btn.btn-default Gammelt brygg
+        
+
+    .row.brew-list
+        .col-md-6
+            h2 Aktive brygg
+            table
+                thead
+                    tr
+                        th Tittel
+                        th Øltype
+                        th Påbegynt
+                tbody
+                    tr
+                        td Superbrygg
+                        td Lager
+                        td 24.05.2014
+                    tr
+                        td Drittbrygg
+                        td Lager
+                        td 24.05.2014
+                    tr
+                        td Drittbrygg
+                        td Lager
+                        td 24.05.2014
+                    tr
+                        td Drittbrygg
+                        td Lager
+                        td 24.05.2014
+        .col-md-6
+            h2 Arkiverte brygg
+
+            table
+                thead
+                    tr
+                        th Tittel
+                        th Øltype
+                        th Vurdering
+                        th Påbegynt
+                tbody
+                    tr
+                        td Superbrygg
+                        td Lager
+                        td ★★★★
+                        td 24.05.2014
+                    tr
+                        td Drittbrygg
+                        td Lager
+                        td ★★★★
+                        td 24.05.2014
+                    tr
+                        td Drittbrygg
+                        td Lager
+                        td ★★★★
+                        td 24.05.2014
+                    tr
+                        td Drittbrygg
+                        td Lager
+                        td ★★★★
+                        td 24.05.2014
