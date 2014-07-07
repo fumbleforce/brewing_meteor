@@ -4,6 +4,11 @@ var Schema = {};
     Information about the brewer
 */
 Schema.Brewer = new SimpleSchema({
+    username: {
+        type: String,
+        label: "Brukernavn",
+        max: 30
+    },
     name: {
         type: String,
         label: "Brygger",
@@ -18,7 +23,7 @@ Schema.Brewer = new SimpleSchema({
 });
 
 Brewer = new Meteor.Collection("brewer");
-Brewer.attachSchema(Schema.Brewer)
+Brewer.attachSchema(Schema.Brewer);
 
 
 
@@ -41,21 +46,45 @@ Schema.Malt = new SimpleSchema({
     gravity: {
         type: Number,
         label: "Tetthet"
+    },
+    price: {
+        type: Number,
+        label: "Pris per pose"
+    },
+    amount: {
+        type: Number,
+        label: "Gram per pose"
     }
 });
 
 Malt = new Meteor.Collection("malt");
-Malt.attachSchema(Schema.Malt)
+Malt.attachSchema(Schema.Malt);
 
 
 /*
     Malt entry
 */
 Schema.MaltEntry = new SimpleSchema({
+    
     malt: {
         type: Schema.Malt,
         label: "Malt",
     },
+    /*
+    name: {
+        type: String,
+        label: "Navn",
+        max: 200
+    },
+    ebc: {
+        type: Number,
+        label: "EBC",
+    },
+    gravity: {
+        type: Number,
+        label: "Tetthet"
+    },
+    */
     weight: {
         type: Number,
         label: "Vekt (g)",
@@ -70,7 +99,7 @@ Schema.MaltEntry = new SimpleSchema({
     }
 });
 MaltEntry = new Meteor.Collection("maltEntry");
-MaltEntry.attachSchema(Schema.MaltEntry)
+MaltEntry.attachSchema(Schema.MaltEntry);
 
 
 
@@ -83,10 +112,18 @@ Schema.Hop = new SimpleSchema({
         label: "Navn",
         max: 200
     },
+    price: {
+        type: Number,
+        label: "Pris per pose"
+    },
+    amount: {
+        type: Number,
+        label: "Gram per pose"
+    }
 });
 
 Hop = new Meteor.Collection("hop");
-Hop.attachSchema(Schema.Hop)
+Hop.attachSchema(Schema.Hop);
 
 
 /*
@@ -112,10 +149,11 @@ Schema.HopEntry = new SimpleSchema({
     bitterness: {
         type: Number,
         label: "Bitterhet (IBU)"
-    }
+    },
+
 });
 HopEntry = new Meteor.Collection("hopEntry");
-HopEntry.attachSchema(Schema.HopEntry)
+HopEntry.attachSchema(Schema.HopEntry);
 
 
 
@@ -129,30 +167,41 @@ Schema.Yeast = new SimpleSchema({
         label: "Navn",
         max: 200
     },
+    price: {
+        type: Number,
+        label: "Pris"
+    }
 });
 
 Yeast = new Meteor.Collection("yeast");
-Yeast.attachSchema(Schema.Yeast)
+Yeast.attachSchema(Schema.Yeast);
 
 
 
 
 /*
-    Information about a fermentation period
+    Information about a mesh period
 */
-Schema.Fermentation = new SimpleSchema({
+Schema.Period = new SimpleSchema({
     temp: {
         type: Number,
         label: "Temperatur (C)",
+        optional: true
     },
     duration: {
         type: Number,
-        label: "Varighet (dager)"
+        label: "Varighet (min)",
+        optional: true
+    },
+    amount: {
+        type: Number,
+        label: "Mengde",
+        optional: true
     }
 });
 
-Fermentation = new Meteor.Collection("fermentation");
-Fermentation.attachSchema(Schema.Fermentation)
+Period = new Meteor.Collection("period");
+Period.attachSchema(Schema.Period);
 
 
 
@@ -187,37 +236,88 @@ Schema.Brew = new SimpleSchema({
         label: "Ferdigstillt",
         optional: true
     },
-    voluem: {
+
+    volume: {
         type: Number,
-        label: "Volum",
+        label: "Volum (liter)",
+    },
+
+
+    // Process info
+
+    meshWater: {
+        type: Number,
+        label: "Meskevann (liter)"
+    },
+    firstMesh: {
+        type: Schema.Period,
+        label: "1. Mesking"
+    },
+    secondMesh: {
+        type: Schema.Period,
+        label: "2. Mesking"
+    },
+    rinsing: {
+        type: Schema.Period,
+        label: "Skylling"
+    },
+    washing: {
+        type: Schema.Period,
+        label: "Utvasking"
+    },
+    boilStart: {
+        type: Schema.Period,
+        label: "Kokestart"
+    },
+    
+
+    fermentation: {
+        type: Schema.Period,
+        label: "Gjæring"
+    },
+
+    flasking: {
+        type: Schema.Period,
+        label: "Flasking/Fat"
+    },
+
+
+    // Brew ingredients
+
+    malts: {
+        type: [Schema.MaltEntry],
+        label: "Malt",
+    },
+    hops: {
+        type: [Schema.HopEntry],
+        label: "Humle",
+    },
+    yeast: {
+        type: [Schema.YeastEntry],
+        label: "Gjær"
     },
 
     // Brew data
 
-    malt: {
-        type: [Schema.Malt],
-        label: "Malt",
-    },
-    hops: {
-        type: [Schema.Hop],
-        label: "Humle",
-    },
-    yeast: {
-        type: [Schema.Yeast],
-        label: "Gjær"
-    },
-    fermentation: {
-        type: [Schema.Fermentation],
-        label: "Gjæring"
-    },
-
-    og: {
+    estimatedOg: {
         type: Number,
-        label: "OG"
+        label: "Beregnet OG"
     },
-    fg: {
+    measuredOg: {
         type: Number,
-        label: "FG"
+        label: "Målt OG"
+    },
+    estimatedFg: {
+        type: Number,
+        label: "Beregnet FG"
+    },
+    measuredFg: {
+        type: Number,
+        label: "Målt FG"
+    },
+    yield: {
+        type: Number,
+        label: "Utbytte"
     },
     alcohol: {
         type: Number,
@@ -226,6 +326,12 @@ Schema.Brew = new SimpleSchema({
     bitterness: {
         type: Number,
         label: "Bitterhet (IBU)"
+    },
+
+
+    priceEach: {
+        type: Number,
+        label: "Pris per flaske (kr)"
     }
     
 });

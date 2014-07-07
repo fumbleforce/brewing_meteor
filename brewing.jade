@@ -14,7 +14,7 @@ body
 
     .brewer
         .col-md-6
-            .brewer-name Brygger: Jørgen
+            h4.brewer-name Brygger: Jørgen
         .col-md-3
             .btn.btn-default Ny brygger
         .col-md-3
@@ -23,80 +23,24 @@ body
     .content
         .page.frontpage
             +frontpage
-
         .page.newbrew(style="display:none")
             +newbrew
+        .page.newbrewer(style="display:none")
+            //+newbrewer
+        .page.oldbrew(style="display:none")
+            //+oldbrew
+        .page.brewinprogress(style="display:none")
+            //+brewinprogress
+        .page.archivebrew(style="display:none")
+            //+archivebrew
+        .page.editbrew(style="display:none")
+            //+editbrew
         
 
-template(name="newbrew")
-    +quickForm(collection="Brew" id="insertBrewForm" type="insert")
 
-template(name="frontpage")
 
-    .row.headline
-        h1 Ølbrygging
-        h4 I samarbeid med Åsen Bryggeri
 
-    .row.menu
-        
-        .new-brew-btn.btn.btn-default Nytt brygg
-        .old-brew-btn.btn.btn-default Gammelt brygg
-        
 
-    .row.brew-list
-        .col-md-6
-            h2 Aktive brygg
-            table
-                thead
-                    tr
-                        th Tittel
-                        th Øltype
-                        th Påbegynt
-                tbody
-                    tr
-                        td Superbrygg
-                        td Lager
-                        td 24.05.2014
-                    tr
-                        td Drittbrygg
-                        td Lager
-                        td 24.05.2014
-                    tr
-                        td Drittbrygg
-                        td Lager
-                        td 24.05.2014
-                    tr
-                        td Drittbrygg
-                        td Lager
-                        td 24.05.2014
-        .col-md-6
-            h2 Arkiverte brygg
 
-            table
-                thead
-                    tr
-                        th Tittel
-                        th Øltype
-                        th Vurdering
-                        th Påbegynt
-                tbody
-                    tr
-                        td Superbrygg
-                        td Lager
-                        td ★★★★
-                        td 24.05.2014
-                    tr
-                        td Drittbrygg
-                        td Lager
-                        td ★★★★
-                        td 24.05.2014
-                    tr
-                        td Drittbrygg
-                        td Lager
-                        td ★★★★
-                        td 24.05.2014
-                    tr
-                        td Drittbrygg
-                        td Lager
-                        td ★★★★
-                        td 24.05.2014
+
+

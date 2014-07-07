@@ -1,0 +1,117 @@
+
+
+
+
+template(name="afObjectField_periodEntry")
+    .row
+        .col-md-4
+            +afQuickField(name=this.atts.name)
+    
+
+
+
+
+template(name="maltEntry")
+    .panel.panel-default
+        .panel-heading
+            +afFieldLabelText(name="malts")
+        ul.list-group
+            li.list-group-item.autoform-array-item
+                .media
+                    button.btn.btn-primary.autoform-remove-item.pull-left
+                        span.glyphicon.glyphicon-minus
+                    .media-body
+                        .col-md-6
+                            +afQuickField(name="malts.$.malt" options=malts)
+                        .col-md-6
+                            +autoForm(collection="Malt" id="insertMaltForm" type="insert" meteormethod="newmalt")
+                        +afQuickField(name="weight")
+                        +afQuickField(name="percent")
+                        +afQuickField(name="color")
+        li.list-group-item
+            button.btn.btn-primary.autoform-add-item(data-autoform-field="#{this.atts.name}")
+                span.glyphicon.glyphicon-plus
+    
+
+
+
+template(name="afArrayField_maltEntries")
+    .panel.panel-default
+        ul.list-group
+            +afEachArrayItem(name=this.atts.name minCount=this.atts.minCount maxCount=this.atts.maxCount)
+                li.list-group-item.autoform-array-item
+                    .media
+                        button.btn.btn-primary.autoform-remove-item.pull-left
+                            span.glyphicon.glyphicon-minus
+                        .media-body
+                            .row
+                                .col-md-6
+                                    legend Eksisterende malt
+                                    +afQuickField(name="malts.$.malt" options=malts)
+                                .col-md-6
+                                    legend Nytt malt
+                                    +quickForm(collection="Malt" id="insertMaltForm" type="insert")
+                            .row
+                                .col-md-4
+                                    +afQuickField(name="malts.$.weight")
+                                .col-md-4
+                                    +afQuickField(name="malts.$.percent" readonly=true)
+                                .col-md-4
+                                    +afQuickField(name="malts.$.color")
+        li.list-group-item
+            button.btn.btn-primary.autoform-add-item(data-autoform-field="#{this.atts.name}")
+                span.glyphicon.glyphicon-plus
+
+
+template(name="afArrayField_hopEntries")
+    .panel.panel-default
+        ul.list-group
+            +afEachArrayItem(name=this.atts.name minCount=this.atts.minCount maxCount=this.atts.maxCount)
+                li.list-group-item.autoform-array-item
+                    .media
+                        button.btn.btn-primary.autoform-remove-item.pull-left
+                            span.glyphicon.glyphicon-minus
+                        .media-body
+                            .row
+                                .col-md-6
+                                    legend Eksisterende humle
+                                    +afQuickField(name="hops.$.hop" options=hops)
+                                .col-md-6
+                                    legend Ny humle
+                                    +quickForm(collection="Hop" id="insertHopForm" type="insert")
+                            hr
+                            .row
+                                .col-md-6
+                                    +afQuickField(name="hops.$.weight")
+                                .col-md-6
+                                    +afQuickField(name="hops.$.alpha")
+                            .row
+                                .col-md-6
+                                    +afQuickField(name="hops.$.bitterness")
+                                .col-md-6
+                                    +afQuickField(name="hops.$.boil")
+                            
+        li.list-group-item
+            button.btn.btn-primary.autoform-add-item(data-autoform-field="#{this.atts.name}")
+                span.glyphicon.glyphicon-plus
+
+
+template(name="afArrayField_yeastEntries")
+    .panel.panel-default
+        ul.list-group
+            +afEachArrayItem(name=this.atts.name minCount=this.atts.minCount maxCount=this.atts.maxCount)
+                li.list-group-item.autoform-array-item
+                    .media
+                        button.btn.btn-primary.autoform-remove-item.pull-left
+                            span.glyphicon.glyphicon-minus
+                        .media-body
+                            .row
+                                .col-md-6
+                                    legend Eksisterende gjær
+                                    +afQuickField(name="yeast" options=yeasts)
+                                .col-md-6
+                                    legend Nytt gjær
+                                    +quickForm(collection="Yeast" id="insertYeastForm" type="insert")
+        li.list-group-item
+            button.btn.btn-primary.autoform-add-item(data-autoform-field="#{this.atts.name}")
+                span.glyphicon.glyphicon-plus

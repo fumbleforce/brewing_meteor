@@ -32,7 +32,9 @@ body, html
         margin: 0 auto
         top: 40px
         padding-top: 20px
-
+        
+        .page
+            width: 800px
 
         .headline
             text-align: center
@@ -61,3 +63,25 @@ body, html
                 tbody
                     tr:hover
                         background: orange
+
+
+
+
+
+@keyframes fromright {
+    0% {
+        margin-left: 100%;
+    }
+    100% {
+        margin-left: 0;
+    }
+}
+
+@keyframes toleft {
+    0% {
+        margin-left: 0%;
+    }
+    100% {
+        margin-left: -100%;
+    }
+}

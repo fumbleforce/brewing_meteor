@@ -23,7 +23,7 @@ function bubbles() {
     $bubbles.find('.bubble-container').each(function(){
 
         // Randomise the bubble positions (0 - 100%)
-        var pos_rand = Math.floor(Math.random() * 101);
+        var pos_rand = Math.floor(Math.random() * 201);
 
         // Randomise their size
         var size_rand = min_bubble_size + Math.floor(Math.random() * (max_bubble_size + 1));
@@ -54,7 +54,12 @@ function bubbles() {
 
         $this.children('.bubble').css({
             'width' : size_rand + 'px',
-            'height' : size_rand + 'px'
+            'height' : size_rand + 'px',
+
+            '-webkit-animation-name' : 'bubblewobble',
+            '-moz-animation-name' : 'bubblewobble',
+            '-ms-animation-name' : 'bubblewobble',
+            'animation-name' : 'bubblewobble'
         });
     });
 
@@ -63,13 +68,13 @@ function bubbles() {
 function turnGlass () {
     var $bubbles = $('.bubbles');
 
-    $bubbles.find('.bubble-container').each(function() {
+    // Randomise the time they start rising (0-15s)
+    var delay_rand = 0;
 
-        // Randomise the time they start rising (0-15s)
-        var delay_rand = 0;
+    // Randomise their speed (3-8s)
+    var speed_rand = 1;
 
-        // Randomise their speed (3-8s)
-        var speed_rand = 5;
+    $bubbles.find('.bubble-container .bubble').each(function() {
 
         // Cache the this selector
         var $this = $(this);
@@ -95,7 +100,7 @@ function turnGlass () {
 
     });
 
-    setTimeout(bubbles, 5000);
+    setTimeout(bubbles, speed_rand*1000);
 }
 
 

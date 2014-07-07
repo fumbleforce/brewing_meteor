@@ -1,0 +1,71 @@
+
+template(name="newbrew")
+    //+quickForm(collection="Brew" id="insertBrewForm" type="insert")
+
+
+    +autoForm(collection="Brew" id="insertBrewForm" type="insert" meteormethod="newbrew")
+        h1 Nytt brygg
+        fieldset
+            legend Navn og beskrivelse
+            .row
+                .col-md-6
+                    +afQuickField(name="title")
+                .col-md-6
+                    +afQuickField(name="dateStarted")
+            .row
+                .col-md-12
+                    +afQuickField(name="description" rows="6")
+            
+        fieldset
+            legend Batch informasjon
+            .row
+                .col-md-6
+                    +afQuickField(name="volume")
+                .col-md-6
+                     +afQuickField(name="meshWater")
+            .row
+                .col-md-2
+                    +afQuickField(name="firstMesh")
+                .col-md-2
+                    +afQuickField(name="secondMesh")
+                .col-md-2
+                    +afQuickField(name="rinsing")
+                .col-md-2
+                    +afQuickField(name="washing")
+                .col-md-2
+                    +afQuickField(name="boilStart")
+
+
+        
+        fieldset
+            legend Ingredienser
+            .row
+                .col-md-12
+                    +afArrayField(name="malts" template="maltEntries")
+            .row
+                .col-md-12
+                    +afArrayField(name="hops" template="hopEntries")
+            .row
+                .col-md-12
+                    +afArrayField(name="yeast" template="yeastEntries")
+        
+
+        fieldset
+            legend Verdier
+            .row
+                .col-md-4
+                    +afQuickField(name="estimatedOg" readonly=true)
+                .col-md-4
+                    +afQuickField(name="estimatedFg" readonly=true)
+                .col-md-4
+                    +afQuickField(name="bitterness" readonly=true)
+            .row
+                .col-md-6
+                    +afQuickField(name="alcohol" readonly=true)
+                .col-md-6
+                    +afQuickField(name="priceEach" readonly=true)
+
+
+        
+        button(type="submit" class="btn btn-primary btn-lg") Insert
+
