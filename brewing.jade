@@ -6,6 +6,10 @@ head
     script(src="/bubbles.js")
 
 body
+    +main
+
+
+template(name="main")
     .bubbles
 
         button.bubble-toggle(style="display:none") Slå av bobler
@@ -13,12 +17,14 @@ body
     .foam
 
     .brewer
-        .col-md-6
-            h4.brewer-name Brygger: Jørgen
-        .col-md-3
-            .btn.btn-default Ny brygger
-        .col-md-3
-            .btn.btn-default Eksisterende brygger
+        .col-xs-6
+            if brewer
+                h4.brewer-name #{brewer.name}, #{brewer.brewery}
+        unless brewer
+            .col-xs-3
+                .btn.btn-default(onclick="nextPage('newbrewer');") Ny brygger
+            .col-xs-3
+                .btn.btn-default(onclick="nextPage('oldbrewer');") Eksisterende brygger
 
     .content
         .page.frontpage
@@ -26,13 +32,13 @@ body
         .page.newbrew(style="display:none")
             +newbrew
         .page.newbrewer(style="display:none")
-            //+newbrewer
+            +newbrewer
         .page.oldbrew(style="display:none")
             //+oldbrew
         .page.brewinprogress(style="display:none")
             //+brewinprogress
         .page.archivebrew(style="display:none")
-            //+archivebrew
+            +archivebrew
         .page.editbrew(style="display:none")
             //+editbrew
         

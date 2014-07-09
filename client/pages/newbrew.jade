@@ -2,6 +2,7 @@
 template(name="newbrew")
     //+quickForm(collection="Brew" id="insertBrewForm" type="insert")
 
+    .btn.btn-default(onclick="nextPage('frontpage');") Tilbake
 
     +autoForm(collection="Brew" id="insertBrewForm" type="insert" meteormethod="newbrew")
         h1 Nytt brygg
@@ -68,4 +69,3 @@ template(name="newbrew")
 
         
         button(type="submit" class="btn btn-primary btn-lg") Insert
-
