@@ -5,7 +5,7 @@ nextPage = function (page){
 
     turnGlass();
 
-    $(".page").animate({
+    $(".page:visible").animate({
         "margin-left": "-200%"
      }, 500, "swing", function () {
         $(".page").hide();
@@ -42,7 +42,7 @@ UI.registerHelper("malts", function() {
         malt.label = malt.name +
             "    EBC: " + malt.ebc +
             "    Tetthet: " + malt.gravity;
-        malt.value = i;
+        malt.value = malt._id;
         return malt;
     });
 });
@@ -52,7 +52,7 @@ UI.registerHelper("hops", function() {
 
     hops = _.map(hops, function (hop, i) {
         hop.label = hop.name;
-        hop.value = i;
+        hop.value = hop._id;
         return hop;
     });
     return hops;
@@ -63,7 +63,7 @@ UI.registerHelper("yeasts", function() {
 
     yeasts = _.map(yeasts, function (yeast, i) {
         yeast.label = yeast.name;
-        yeast.value = i;
+        yeast.value = yeast._id;
         return yeast;
     });
     return yeasts;
@@ -88,9 +88,14 @@ if (Meteor.isClient) {
         }
     });
 
-    Template.frontpage.activeBrews = function () {
-        return Brew.find({ brewer: Session.get("user"), dateCompleted: { $exists: false } });
-    };
+    Template.frontpage.helpers({
+        activeBrews: function () {
+            return Brew.find({ brewer: Session.get("user"), dateCompleted: { $exists: false } });
+        },
+        archivedBrews:function () {
+            return Brew.find({ brewer: Session.get("user"), dateCompleted: { $exists: true } });
+        },
+    })
 
     Template.newbrew.calculate = function (form) {
         var data = formToObject(form);
@@ -118,13 +123,110 @@ if (Meteor.isClient) {
                     }
                     
                 },
-            }
+            },
+        },
+        insertBrewForm: {
+            onSubmit: function(doc) {
+                console.log("On submit");
+                console.log(doc)
+            },
+
+            beginSubmit: function(formId, template) {
+                console.log("Begin submit");
+            },
+
+            onSuccess: function(operation, result, template) {
+                nextPage("frontpage");
+            }, 
+
+            // Called when any operation fails, where operation will be
+            // "validation", "insert", "update", "remove", or the method name.
+            onError: function(operation, error, template) {
+                console.log(operation);
+                console.log(error);
+            },
+
+            formToDoc: function (doc) {
+                console.log("Doc to form");
+                console.log(doc);
+
+                /*
+                if (_.isArray(doc.malts.$.malt)) {
+                    doc.malts = _.map(doc.malts.$.malt, function (malt) {
+                        malt.malt = Malt.findOne(malt);
+                        return malt;
+                    });
+                } else {
+                    doc.malts.$.malt = Malt.findOne(doc.malts.$.malt);
+                    doc.malts = [doc.malts.$];
+                }
+
+                if (_.isArray(doc.hops.$.hop)) {
+                    doc.hops = _.map(doc.hops.$.hop, function (hop) {
+                        hop.hop = Hop.findOne(hop)
+                        return hop;
+                    });
+                } else {
+                    doc.hops.$.hop = Hop.findOne(doc.hops.$.hop)
+                    doc.hops = [doc.hops.$];
+                }
+                
+                if (_.isArray(doc.yeast)) {
+                    doc.yeast = _.map(doc.yeast, function (yeast) {
+                        return Yeast.findOne(yeast);
+                    });
+                } else {
+                    doc.yeast = [Yeast.findOne(doc.yeast)];
+                }
+                */
+
+
+                if (_.isArray(doc.malts.$)) {
+                    doc.malts = _.map(doc.malts.$.malt, function (malt) {
+                        malt.malt = Malt.findOne(malt);
+                        return malt;
+                    });
+                } else {
+                    doc.malts = [doc.malts.$];
+                }
+
+                if (_.isArray(doc.hops.$.hop)) {
+                    doc.hops = _.map(doc.hops.$.hop, function (hop) {
+                        hop.hop = Hop.findOne(hop)
+                        return hop;
+                    });
+                } else {
+                    doc.hops = [doc.hops.$];
+                }
+                
+                if (_.isArray(doc.yeast)) {
+                } else {
+                    doc.yeast = [doc.yeast];
+                }
+
+
+
+                doc.brewer = Session.get("user");
+                
+
+                console.log(doc);
+                return doc;
+            },
+            docToForm: function (doc) {
+                console.log("Form to doc");
+                console.log(doc);
+                doc.malts.$.malt = doc.malts.$.malt._id;
+                return doc;
+            },
         }
     });
 
      Meteor.startup(function () {
-        if (localStorage["user"])
+        if (localStorage["user"]) {
             Session.set("user", localStorage["user"]);
+            //Meteor.userId = localStorage["user"];
+        }
+            
         Deps.flush();
     });
 }

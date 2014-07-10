@@ -3,7 +3,7 @@ template(name="frontpage")
 
     .row.headline
         h1 Ølbrygging
-        h4 I samarbeid med Åsen Bryggeri
+        h4 
 
     .row.menu
         
@@ -21,22 +21,11 @@ template(name="frontpage")
                         th Øltype
                         th Påbegynt
                 tbody
-                    tr
-                        td Superbrygg
-                        td Lager
-                        td 24.05.2014
-                    tr
-                        td Drittbrygg
-                        td Lager
-                        td 24.05.2014
-                    tr
-                        td Drittbrygg
-                        td Lager
-                        td 24.05.2014
-                    tr
-                        td Drittbrygg
-                        td Lager
-                        td 24.05.2014
+                    each activeBrews
+                        tr
+                            td= title
+                            td= type
+                            td= dateStarted
         .col-md-6
             h2 Arkiverte brygg
 
@@ -48,23 +37,9 @@ template(name="frontpage")
                         th Vurdering
                         th Påbegynt
                 tbody
-                    tr
-                        td Superbrygg
-                        td Lager
-                        td ★★★★
-                        td 24.05.2014
-                    tr
-                        td Drittbrygg
-                        td Lager
-                        td ★★★★
-                        td 24.05.2014
-                    tr
-                        td Drittbrygg
-                        td Lager
-                        td ★★★★
-                        td 24.05.2014
-                    tr
-                        td Drittbrygg
-                        td Lager
-                        td ★★★★
-                        td 24.05.2014
+                    each archivedBrews
+                        tr
+                            td= title
+                            td= type
+                            td= rating
+                            td= dateStarted
