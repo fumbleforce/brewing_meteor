@@ -4,15 +4,17 @@ template(name="newbrew")
 
     .btn.btn-default(onclick="nextPage('frontpage');") Tilbake
 
-    +autoForm(collection="Brew" id="insertBrewForm" type="insert" meteormethod="newbrew")
+    +autoForm(collection="Brew" id="insertBrewForm" type="insert")
         h1 Nytt brygg
         fieldset
             legend Navn og beskrivelse
             .row
-                .col-md-6
+                .col-md-4
                     +afQuickField(name="title")
-                .col-md-6
+                .col-md-4
                     +afQuickField(name="dateStarted")
+                .col-md-4
+                    +afQuickField(name="type")
             .row
                 .col-md-12
                     +afQuickField(name="description" rows="6")

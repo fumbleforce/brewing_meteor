@@ -12,6 +12,9 @@ function bubbles() {
 
     // Calculate a random number of bubbles based on our min/max
     var bubbleCount = min_bubble_count + Math.floor(Math.random() * (max_bubble_count + 1));
+    var existingBubbles = $(".bubble-container").size();
+
+    bubbleCount -= existingBubbles;
 
     // Create the bubbles
     for (var i = 0; i < bubbleCount; i++) {
