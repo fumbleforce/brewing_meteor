@@ -36,6 +36,35 @@ formToObject = function (form) {
     return o;
 };
 
+stringToNumbers = function (obj) {
+    for (var field in obj)
+        if (!isNaN(obj[field])) obj[field] = +obj[field];
+    return obj;
+};
+
+deleteEmptyEntries = function (obj) {
+    var toDelete = [];
+
+    for (var field in obj) {
+        if (obj[field] === "") {
+            toDelete.push(field);
+        }
+    }
+
+    _.each(toDelete, function (f) {
+        delete obj[f];
+    });
+
+    return obj;
+};
+
+getInputRefs = function () {
+    var refs = {};
+    $("[data-schema-key]").each(function () {
+        refs[$(this).attr("data-schema-key")] = $(this);
+    });
+    return refs;
+};
 
 UI.registerHelper("malts", function() {
     return _.map(Malt.find().fetch(), function (malt, i) {
@@ -89,11 +118,36 @@ if (Meteor.isClient) {
     });
 
     Template.frontpage.activeBrews = function () {
-        return Brew.find({ brewer: Session.get("user"), dateCompleted: { $exists: false } });
+        return Brew.find({
+            brewer: Session.get("user"),
+            dateCompleted: { $exists: false }
+        });
     };
 
     Template.newbrew.calculate = function (form) {
-        var data = formToObject(form);
+        var data = formToObject(form),
+            refs = getInputRefs();
+        data = deleteEmptyEntries(data);
+        data = stringToNumbers(data);
+
+        refs['meshWater'].val(refs['volume'].val());
+
+
+        if (Array.isArray(data['malts.$.weight'])) {
+            var totalMalt = data['malts.$.weight'].reduce(function(a,b){return +a + +b;}, 0);
+
+            $('[name="malts.$.percent"]').each(function (i, $el) {
+                $(this).val(100*(data['malts.$.weight'][i]/totalMalt));
+            });
+
+        } else {
+            refs['malts.$.percent'].val(100);
+        }
+
+        refs['alcohol'].val(Math.random());
+
+
+
 
         console.log(data);
     };

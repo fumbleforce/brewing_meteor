@@ -53,7 +53,7 @@ Schema.Malt = new SimpleSchema({
     },
     amount: {
         type: Number,
-        label: "Gram per pose"
+        label: "Kg per pose"
     }
 });
 
