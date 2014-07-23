@@ -111,9 +111,16 @@ if (Meteor.isClient) {
         return false;
     };
 
+    Template.frontpage.brewer = Template.main.brewer;
+
     Template.frontpage.events({
         "click .new-brew-btn": function (e) {
             nextPage("newbrew");
+        },
+        "click .active-brew": function (e) {
+            var brewId = $(e.target).attr("brewId");
+            Session.set("activeBrew", brewId);
+            nextPage("brewinprogress");
         }
     });
 
@@ -155,7 +162,7 @@ if (Meteor.isClient) {
             refs['malts.$.percent'].val(100);
         }
 
-        refs['alcohol'].val(Math.random());
+        refs['alcohol'].val(Math.random().toFixed(2));
 
 
 
@@ -203,11 +210,12 @@ if (Meteor.isClient) {
             // "validation", "insert", "update", "remove", or the method name.
             onError: function(operation, error, template) {
                 console.log(operation);
-                console.log(error);
+                console.log(error.stack);
+                console.log(error.message);
             },
 
             formToDoc: function (doc) {
-                console.log("Doc to form");
+                console.log("Form to doc");
                 console.log(doc);
 
                 /*
@@ -273,13 +281,45 @@ if (Meteor.isClient) {
                 return doc;
             },
             docToForm: function (doc) {
-                console.log("Form to doc");
+                console.log("Doc to form");
                 console.log(doc);
-                doc.malts.$.malt = doc.malts.$.malt._id;
+                //doc.malts.$.malt = doc.malts.$.malt._id;
                 return doc;
             },
         }
     });
+
+    
+    login = function (username) {
+        var brewer = Brewer.findOne({ username: username });
+        if (brewer) {
+            Session.set("user", brewer._id);
+            localStorage["user"] = brewer._id;
+            nextPage("frontpage");
+        } else {
+            $(".username").addClass("error")
+        }
+        
+    }
+
+    Template.login.events({
+        "click .login-button": function () {
+            var username = $(".username").val();
+            login(username);
+        }
+    })
+
+
+    Template.brewinprogress.helpers({
+        brew: function () {
+            if (Session.get("activeBrew")) {
+                return Brew.findOne(Session.get("activeBrew"))
+            }
+            return null;
+        }
+    })
+
+
 
      Meteor.startup(function () {
         if (localStorage["user"]) {

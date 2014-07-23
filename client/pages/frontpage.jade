@@ -6,14 +6,15 @@ template(name="frontpage")
         h4 
 
     .row.menu
-        
-        .new-brew-btn.btn.btn-default Nytt brygg
-        .old-brew-btn.btn.btn-default Gammelt brygg
+        if brewer
+            .new-brew-btn.btn.btn-default Nytt brygg
+            .old-brew-btn.btn.btn-default Gammelt brygg
         
 
     .row.brew-list
         .col-md-6
             h2 Aktive brygg
+            hr
             table
                 thead
                     tr
@@ -22,13 +23,13 @@ template(name="frontpage")
                         th Påbegynt
                 tbody
                     each activeBrews
-                        tr
+                        tr.active-brew(brewId="#{_id}")
                             td= title
                             td= type
                             td= dateStarted
         .col-md-6
             h2 Arkiverte brygg
-
+            hr
             table
                 thead
                     tr

@@ -42,23 +42,27 @@ Schema.Malt = new SimpleSchema({
     ebc: {
         type: Number,
         label: "EBC",
-        optional: true
+        optional: true,
+        decimal: true,
     },
     gravity: {
         type: Number,
         label: "Tetthet",
-        optional: true
+        optional: true,
+        decimal: true,
     },
     price: {
         type: Number,
         label: "Pris per pose",
-        optional: true
+        optional: true,
+        decimal: true,
     },
     amount: {
         type: Number,
 
-        label: "Kg per pose"
-        optional: true
+        label: "Kg per pose",
+        optional: true,
+        decimal: true,
 
     }
 });
@@ -99,12 +103,14 @@ Schema.MaltEntry = new SimpleSchema({
     percent: {
         type: Number,
         label: "Andel (%)",
-        optional: true
+        optional: true,
+        decimal: true,
     },
     color: {
         type: Number,
         label: "Farge (MCU)",
-        optional: true
+        optional: true,
+        decimal: true,
     }
 });
 MaltEntry = new Meteor.Collection("maltEntry");
@@ -124,7 +130,8 @@ Schema.Hop = new SimpleSchema({
     price: {
         type: Number,
         label: "Pris per pose",
-        optional: true
+        optional: true,
+        decimal: true,
     },
     amount: {
         type: Number,
@@ -153,7 +160,8 @@ Schema.HopEntry = new SimpleSchema({
     alpha: {
         type: Number,
         label: "Alfa (%)",
-        optional: true
+        optional: true,
+        decimal: true,
     },
     boil: {
         type: Number,
@@ -163,7 +171,8 @@ Schema.HopEntry = new SimpleSchema({
     bitterness: {
         type: Number,
         label: "Bitterhet (IBU)",
-        optional: true
+        optional: true,
+        decimal: true,
     },
 
 });
@@ -185,7 +194,8 @@ Schema.Yeast = new SimpleSchema({
     price: {
         type: Number,
         label: "Pris",
-        optional: true
+        optional: true,
+        decimal: true,
     }
 });
 
@@ -202,17 +212,20 @@ Schema.Period = new SimpleSchema({
     temp: {
         type: Number,
         label: "Temperatur (C)",
-        optional: true
+        optional: true,
+        decimal: true,
     },
     duration: {
         type: Number,
         label: "Varighet (min)",
-        optional: true
+        optional: true,
+        decimal: true,
     },
     amount: {
         type: Number,
         label: "Mengde",
-        optional: true
+        optional: true,
+        decimal: true,
     }
 });
 
@@ -342,36 +355,43 @@ Schema.Brew = new SimpleSchema({
         type: Number,
         label: "Beregnet OG",
         optional: true,
+        decimal: true,
     },
     measuredOg: {
         type: Number,
         label: "Målt OG",
         optional: true,
+        decimal: true,
     },
     estimatedFg: {
         type: Number,
         label: "Beregnet FG",
         optional: true,
+        decimal: true,
     },
     measuredFg: {
         type: Number,
         label: "Målt FG",
         optional: true,
+        decimal: true,
     },
     yield: {
         type: Number,
         label: "Utbytte",
         optional: true,
+        decimal: true,
     },
     alcohol: {
         type: Number,
         label: "Alkolhol (%)",
         optional: true,
+        decimal: true,
     },
     bitterness: {
         type: Number,
         label: "Bitterhet (IBU)",
         optional: true,
+        decimal: true,
     },
 
 
@@ -379,6 +399,7 @@ Schema.Brew = new SimpleSchema({
         type: Number,
         label: "Pris per flaske (kr)",
         optional: true,
+        decimal: true,
     }
     
 });

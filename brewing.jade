@@ -11,6 +11,7 @@ body
 
 template(name="main")
     .bubbles
+        .glass
 
         button.bubble-toggle(style="display:none") Slå av bobler
 
@@ -24,7 +25,7 @@ template(name="main")
             .col-xs-3
                 .btn.btn-default(onclick="nextPage('newbrewer');") Ny brygger
             .col-xs-3
-                .btn.btn-default(onclick="nextPage('oldbrewer');") Eksisterende brygger
+                .btn.btn-default(onclick="nextPage('login');") Eksisterende brygger
 
     .content
         .page.frontpage
@@ -35,6 +36,8 @@ template(name="main")
             +newbrewer
         .page.oldbrew(style="display:none")
             //+oldbrew
+        .page.login(style="display:none")
+            +login
         .page.brewinprogress(style="display:none")
             //+brewinprogress
         .page.archivebrew(style="display:none")
