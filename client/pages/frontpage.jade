@@ -3,17 +3,15 @@ template(name="frontpage")
 
     .row.headline
         h1 Ølbrygging
-        h4 
+        h4
 
     .row.menu
         if brewer
             .new-brew-btn.btn.btn-default Nytt brygg
-            .old-brew-btn.btn.btn-default Gammelt brygg
-        
 
     .row.brew-list
-        .col-md-6
-            h2 Aktive brygg
+        .col-md-6-col-md-offset-3
+            h2 Brygg
             hr
             table
                 thead
@@ -22,25 +20,8 @@ template(name="frontpage")
                         th Øltype
                         th Påbegynt
                 tbody
-                    each activeBrews
+                    each brews
                         tr.active-brew(brewId="#{_id}")
                             td= title
                             td= type
-                            td= dateStarted
-        .col-md-6
-            h2 Arkiverte brygg
-            hr
-            table
-                thead
-                    tr
-                        th Tittel
-                        th Øltype
-                        th Vurdering
-                        th Påbegynt
-                tbody
-                    each archivedBrews
-                        tr
-                            td= title
-                            td= type
-                            td= rating
                             td= dateStarted

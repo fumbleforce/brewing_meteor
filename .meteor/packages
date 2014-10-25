@@ -6,9 +6,10 @@
 standard-app-packages
 autopublish
 insecure
-jade
-bootstrap-3
-stylus-multi
 jquery
-autoform
-collection2
+mquandalle:jade
+mizzao:bootstrap-3
+cryptoquick:stylus-multi
+aldeed:autoform
+aldeed:collection2
+

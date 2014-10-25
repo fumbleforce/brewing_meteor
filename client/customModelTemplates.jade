@@ -6,7 +6,7 @@ template(name="afObjectField_periodEntry")
     .row
         .col-md-4
             +afQuickField(name=this.atts.name)
-    
+
 
 
 
@@ -23,11 +23,16 @@ template(name="afArrayField_maltEntries")
                         .media-body
                             .row
                                 .col-md-6
-                                    legend Eksisterende malt
-                                    +afQuickField(name="malts.$.malt" options=malts)
+                                    +afQuickField(name="malts.$.name")
                                 .col-md-6
-                                    legend Nytt malt
-                                    //+quickForm(collection="Malt" id="insertMaltForm" type="insert")
+                                    +afQuickField(name="malts.$.ebc")
+                            .row
+                                .col-md-4
+                                    +afQuickField(name="malts.$.gravity")
+                                .col-md-4
+                                    +afQuickField(name="malts.$.price")
+                                .col-md-4
+                                    +afQuickField(name="malts.$.amount")
                             .row
                                 .col-md-4
                                     +afQuickField(name="malts.$.weight")
@@ -51,12 +56,12 @@ template(name="afArrayField_hopEntries")
                         .media-body
                             .row
                                 .col-md-6
-                                    legend Eksisterende humle
-                                    +afQuickField(name="hops.$.hop" options=hops)
+                                    +afQuickField(name="hops.$.name")
                                 .col-md-6
-                                    legend Ny humle
-                                    //+quickForm(collection="Hop" id="insertHopForm" type="insert")
-                            hr
+                                    +afQuickField(name="hops.$.price")
+                            .row
+                                .col-md-12
+                                    +afQuickField(name="hops.$.amount")
                             .row
                                 .col-md-6
                                     +afQuickField(name="hops.$.weight")
@@ -67,7 +72,7 @@ template(name="afArrayField_hopEntries")
                                     +afQuickField(name="hops.$.bitterness")
                                 .col-md-6
                                     +afQuickField(name="hops.$.boil")
-                            
+
         li.list-group-item
             button.btn.btn-primary.autoform-add-item(data-autoform-field="#{this.atts.name}")
                 span.glyphicon.glyphicon-plus
@@ -84,11 +89,9 @@ template(name="afArrayField_yeastEntries")
                         .media-body
                             .row
                                 .col-md-6
-                                    legend Eksisterende gjær
-                                    +afQuickField(name="yeast" options=yeasts)
+                                    +afQuickField(name="yeast.$.name")
                                 .col-md-6
-                                    legend Nytt gjær
-                                    //+quickForm(collection="Yeast" id="insertYeastForm" type="insert")
+                                    +afQuickField(name="yeast.$.price")
         li.list-group-item
             button.btn.btn-primary.autoform-add-item(data-autoform-field="#{this.atts.name}")
                 span.glyphicon.glyphicon-plus

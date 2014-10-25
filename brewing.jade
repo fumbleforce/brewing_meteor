@@ -1,8 +1,8 @@
 head
     title brewing
-    
+
     link(href='http://fonts.googleapis.com/css?family=Josefin+Slab' rel='stylesheet' type='text/css')
-    
+
     script(src="/bubbles.js")
 
 body
@@ -10,8 +10,9 @@ body
 
 
 template(name="main")
-    .bubbles
-        .glass
+    //
+        .bubbles
+            .glass
 
         button.bubble-toggle(style="display:none") Slå av bobler
 
@@ -42,9 +43,9 @@ template(name="main")
             //+brewinprogress
         .page.archivebrew(style="display:none")
             +archivebrew
-        .page.editbrew(style="display:none")
-            //+editbrew
-        
+        .page.evalbrew(style="display:none")
+            +evalbrew
+
 
 
 

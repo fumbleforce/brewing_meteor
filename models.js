@@ -28,12 +28,11 @@ Brewer.attachSchema(Schema.Brewer);
 
 
 
-
-
 /*
-    Information about a malt type
+    Malt entry
 */
-Schema.Malt = new SimpleSchema({
+Schema.MaltEntry = new SimpleSchema({
+
     name: {
         type: String,
         label: "Navn",
@@ -59,42 +58,10 @@ Schema.Malt = new SimpleSchema({
     },
     amount: {
         type: Number,
-
         label: "Kg per pose",
         optional: true,
         decimal: true,
-
-    }
-});
-
-Malt = new Meteor.Collection("malt");
-Malt.attachSchema(Schema.Malt);
-
-
-/*
-    Malt entry
-*/
-Schema.MaltEntry = new SimpleSchema({
-    
-    malt: {
-        type: String,
-        label: "Malt",
     },
-    /*
-    name: {
-        type: String,
-        label: "Navn",
-        max: 200
-    },
-    ebc: {
-        type: Number,
-        label: "EBC",
-    },
-    gravity: {
-        type: Number,
-        label: "Tetthet"
-    },
-    */
     weight: {
         type: Number,
         label: "Vekt (g)",
@@ -118,10 +85,11 @@ MaltEntry.attachSchema(Schema.MaltEntry);
 
 
 
+
 /*
-    Information about a hop type
+    Hop entry
 */
-Schema.Hop = new SimpleSchema({
+Schema.HopEntry = new SimpleSchema({
     name: {
         type: String,
         label: "Navn",
@@ -137,20 +105,6 @@ Schema.Hop = new SimpleSchema({
         type: Number,
         label: "Gram per pose",
         optional: true
-    }
-});
-
-Hop = new Meteor.Collection("hop");
-Hop.attachSchema(Schema.Hop);
-
-
-/*
-    Hop entry
-*/
-Schema.HopEntry = new SimpleSchema({
-    hop: {
-        type: String,
-        label: "Humle",
     },
     weight: {
         type: Number,
@@ -257,11 +211,12 @@ Schema.Brew = new SimpleSchema({
         label: "Brygger",
     },
     dateStarted: {
-        type: Date,
+        type: String,
         label: "Påbegynt",
+        optional: true
     },
     dateCompleted: {
-        type: Date,
+        type: String,
         label: "Ferdigstillt",
         optional: true
     },
@@ -316,7 +271,7 @@ Schema.Brew = new SimpleSchema({
         label: "Kokestart",
         optional: true,
     },
-    
+
 
     fermentation: {
         type: Schema.Period,
@@ -344,7 +299,7 @@ Schema.Brew = new SimpleSchema({
         optional: true,
     },
     yeast: {
-        type: [Schema.YeastEntry],
+        type: [Schema.Yeast],
         label: "Gjær",
         optional: true,
     },
@@ -401,7 +356,7 @@ Schema.Brew = new SimpleSchema({
         optional: true,
         decimal: true,
     }
-    
+
 });
 
 Brew = new Meteor.Collection("brew");

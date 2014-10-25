@@ -18,48 +18,52 @@ template(name="newbrew")
             .row
                 .col-md-12
                     +afQuickField(name="description" rows="6")
-            
+
         fieldset
             legend Batch informasjon
             .row
                 .col-md-6
                     +afQuickField(name="volume")
+            //
                 .col-md-6
                      +afQuickField(name="meshWater")
-            .row
-                .col-md-2
-                    +afQuickField(name="firstMesh")
-                .col-md-2
-                    +afQuickField(name="secondMesh")
-                .col-md-2
-                    +afQuickField(name="rinsing")
-                .col-md-2
-                    +afQuickField(name="washing")
-                .col-md-2
-                    +afQuickField(name="boilStart")
+                .row
+                    .col-md-2
+                        +afQuickField(name="firstMesh")
+                    .col-md-2
+                        +afQuickField(name="secondMesh")
+                    .col-md-2
+                        +afQuickField(name="rinsing")
+                    .col-md-2
+                        +afQuickField(name="washing")
+                    .col-md-2
+                        +afQuickField(name="boilStart")
 
 
-        
+
         fieldset
             legend Ingredienser
+            h4 Malt
             .row
                 .col-md-12
                     +afArrayField(name="malts" template="maltEntries")
+            h4 Humle
             .row
                 .col-md-12
                     +afArrayField(name="hops" template="hopEntries")
+            h4 Gjær
             .row
                 .col-md-12
                     +afArrayField(name="yeast" template="yeastEntries")
-        
+
 
         fieldset
             legend Verdier
             .row
                 .col-md-4
-                    +afQuickField(name="estimatedOg" readonly=true step="any")
+                    +afQuickField(name="measuredOg" readonly=true step="any")
                 .col-md-4
-                    +afQuickField(name="estimatedFg" readonly=true step="any")
+                    +afQuickField(name="measuredFg" readonly=true step="any")
                 .col-md-4
                     +afQuickField(name="bitterness" readonly=true step="any")
             .row
@@ -69,5 +73,5 @@ template(name="newbrew")
                     +afQuickField(name="priceEach" readonly=true step="any")
 
 
-        
+
         button(type="submit" class="btn btn-primary btn-lg") Insert
