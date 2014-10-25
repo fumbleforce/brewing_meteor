@@ -19,9 +19,19 @@ template(name="frontpage")
                         th Tittel
                         th Øltype
                         th Påbegynt
+                        th Vurdering
+                        th Fylde
+                        th Sødme
+                        th Bitterhet
+                        th Kommentar
                 tbody
                     each brews
                         tr.active-brew(brewId="#{_id}")
                             td= title
                             td= type
                             td= dateStarted
+                            td= totalEval
+                            td= fullnessEval
+                            td= sweetEval
+                            td= bitterEval
+                            td= comment

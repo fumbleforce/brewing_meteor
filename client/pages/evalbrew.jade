@@ -1,7 +1,20 @@
 
 template(name="evalbrew")
+    .btn.btn-default(onclick="nextPage('frontpage');") Tilbake
+
     h1 Evaluer brygg
+
     with brew
-        h1= title
-        h1= brewer
-        h1= description
+        h3= title
+        p= brewer
+        p= description
+    br
+    br
+    +autoForm(collection="Brew" id="editBrewForm" doc=brew type="update")
+        +afQuickField(name="totalEval")
+        +afQuickField(name="bitterEval")
+        +afQuickField(name="fullnessEval")
+        +afQuickField(name="sweetEval")
+        +afQuickField(name="comment" rows="6")
+
+        button(type="submit" class="btn btn-primary btn-lg") Lagre vurdering

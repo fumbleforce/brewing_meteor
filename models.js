@@ -348,14 +348,46 @@ Schema.Brew = new SimpleSchema({
         optional: true,
         decimal: true,
     },
-
-
     priceEach: {
         type: Number,
         label: "Pris per flaske (kr)",
         optional: true,
         decimal: true,
+    },
+
+    // Evaluation
+
+    totalEval: {
+        type: Number,
+        label: "Totalvurdering",
+        optional: true,
+        decimal: false
+    },
+    bitterEval: {
+        type: Number,
+        label: "Bitterhet",
+        optional: true,
+        decimal: false
+    },
+    fullnessEval: {
+        type: Number,
+        label: "Fylde",
+        optional: true,
+        decimal: false
+    },
+    sweetEval: {
+        type: Number,
+        label: "Sødme",
+        optional: true,
+        decimal: false
+    },
+    comment: {
+        type: String,
+        label: "Kommentar",
+        optional: true,
+        max: 1000
     }
+
 
 });
 
