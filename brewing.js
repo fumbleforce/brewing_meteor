@@ -3,13 +3,13 @@
 
 nextPage = function (page) {
 
+    /*
     turnGlass();
 
     $(".page:visible").animate({
         "margin-left": "-200%"
      }, 500, "swing", function () {
         $(".page").hide();
-
         $("."+page)
         .css("margin-left", "200%")
         .show()
@@ -17,6 +17,10 @@ nextPage = function (page) {
             "margin-left": "0px"
         }, 500, "swing");
     });
+    */
+    Deps.flush();
+    $(".page").hide();
+    $("."+page).show()
 };
 
 formToObject = function (form) {
@@ -101,7 +105,7 @@ UI.registerHelper("yeasts", function() {
 
 if (Meteor.isClient) {
 
-    AutoForm.setDefaultTemplateForType('afQuickField', 'bootstrap3-horizontal');
+    //AutoForm.setDefaultTemplateForType('afQuickField', 'bootstrap3-horizontal');
 
      Meteor.startup(function () {
         if (localStorage["user"]) {

@@ -1,0 +1,124 @@
+template(name="viewbrew")
+    .btn.btn-default(onclick="nextPage('frontpage');") Tilbake
+
+    h1.text-center= brew.title
+    h4.text-center
+        span= brew.brewer.name
+        span , 
+        span= brew.brewer.brewery
+    div(style="visibility:hidden")= active
+    hr
+    .row.eval-stars
+        .col-sm-12
+            with brew
+                p
+                    .row
+                        .col-sm-3
+                            label Totalvurdering
+                        .col-sm-9
+                            .row
+                                each totalEval
+                                    .star
+                p
+                    .row
+                        .col-sm-3
+                            label Bitterhet
+                        .col-sm-9
+                            .row
+                                each bitterEval
+                                    .star
+                p
+                    .row
+                        .col-sm-3
+                            label Fylde
+                        .col-sm-9
+                            .row
+                                each fullnessEval
+                                    .star
+                p
+                    .row
+                        .col-sm-3
+                            label Sødme
+                        .col-sm-9
+                            .row
+                                each sweetEval
+                                    .star
+                p
+                    .row
+                        label Kommentar
+                        div= comment
+
+    hr
+    .row
+        .col-sm-6
+            with brew
+                p
+                    label Dato startet
+                    div= dateStarted
+                p
+                    label Beskrivelse
+                    div= description
+                p
+                    label Volum
+                    div= volume
+                p
+                    label FG
+                    div= measuredFG
+                p
+                    label OG
+                    div= measuredOG
+                p
+                    label Alkoholprosent
+                    div= alcohol
+                p
+                    label Bitterhet
+                    div= bitterness
+                p
+                    label Pris / fl.
+                    div= priceEach
+        .col-sm-6
+            p
+                label Malt
+                each brew.malts
+                    div.row.whitebox
+                        .col-sm-10.col-sm-offset-2
+                            div
+                                label Navn
+                                span= name
+                            div
+                                label Mengde (g)
+                                span= weight
+                            div
+                                label Tetthet
+                                span= gravity
+                            div
+                                label Farge (MCU)
+                                span= color
+            p
+                label Humle
+                each brew.hops
+                    div.row.whitebox
+                        .col-sm-10.col-sm-offset-2
+                            div
+                                label Navn
+                                span= name
+                            div
+                                label Mengde (g)
+                                span= weight
+                            div
+                                label Alfasyre (%)
+                                span= alpha
+                            div
+                                label Bitterhet (IBU)
+                                span= bitterness
+            p
+                label Gjær
+                each brew.yeast
+                    div.row.whitebox
+                        .col-sm-10.col-sm-offset-2
+                            div
+                                label Navn
+                                span= name
+                            div
+                                label Pris (g)
+                                span= price

@@ -24,6 +24,7 @@ template(name="frontpage")
                         th Sødme
                         th Bitterhet
                         th Kommentar
+                        th
                 tbody
                     each brews
                         tr.active-brew(brewId="#{_id}")
@@ -34,4 +35,5 @@ template(name="frontpage")
                             td= fullnessEval
                             td= sweetEval
                             td= bitterEval
-                            td= comment
+                            td.truncate(style="max-width:100px")= comment
+                            td: button.btn.btn-default.edit Vurder

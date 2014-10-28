@@ -1,4 +1,4 @@
-Template.newbrew.calculate = function (form) {
+var calculate = function (form) {
     var data = formToObject(form),
         refs = getInputRefs();
     data = deleteEmptyEntries(data);
@@ -22,11 +22,12 @@ Template.newbrew.calculate = function (form) {
     refs['alcohol'].val(Math.random().toFixed(2));
 
     console.log(data);
-};
+}
+
 
 Template.newbrew.events({
     "change input": function (e) {
-        Template.newbrew.calculate("#insertBrewForm");
+        calculate("#insertBrewForm");
     },
 });
 
@@ -54,17 +55,20 @@ AutoForm.hooks({
         },
 
         formToDoc: function (doc) {
-            if (!_.isArray(doc.malts.$)) {
+            console.log(doc)
+            /*
+            if (doc.malts.$ != null && !_.isArray(doc.malts.$.name)) {
                 doc.malts = [doc.malts.$];
             }
 
-            if (!_.isArray(doc.hops.$)) {
+            if (doc.hops.$ != null && !_.isArray(doc.hops.$.name)) {
                 doc.hops = [doc.hops.$];
             }
 
-            if (!_.isArray(doc.yeast.$)) {
+            if (doc.yeast.$ != null && !_.isArray(doc.yeast.$.name)) {
                 doc.yeast = [doc.yeast.$];
             }
+            */
 
             doc.brewer = Session.get("user");
 

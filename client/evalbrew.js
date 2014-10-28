@@ -1,20 +1,31 @@
-Template.evalbrew.brew = function () {
-    return Brew.findOne({
-        brewer: Session.get("user"),
-        id: Session.get("activeBrew")
-    });
-};
+Template.evalbrew.helpers({
+    brew: function () {
+        return Brew.findOne({
+            brewer: Session.get("user"),
+            id: Session.get("activeBrew")
+        });
+    },
+});
+
+Template.evalbrew.events({
+    "change radio": function () {
+        $(this).find('.choice').text( this.value + ' stars' );
+    }
+})
 
 
 AutoForm.hooks({
     editBrewForm: {
-        onSubmit: function(doc) {
-            console.log("On submit");
-            console.log(doc)
-        },
-
         beginSubmit: function(formId, template) {
             console.log("Begin submit");
+        },
+
+        formToDoc: function (doc) {
+            doc.totalEval = +$("input[name='totalEval']:checked").val();
+            doc.bitterEval = +$("input[name='bitterEval']:checked").val();
+            doc.fullnessEval = +$("input[name='fullnessEval']:checked").val();
+            doc.sweetEval = +$("input[name='sweetEval']:checked").val();
+            return doc;
         },
 
         onSuccess: function(operation, result, template) {
@@ -28,3 +39,4 @@ AutoForm.hooks({
         },
     }
 });
+

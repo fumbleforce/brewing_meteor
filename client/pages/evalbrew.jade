@@ -2,19 +2,69 @@
 template(name="evalbrew")
     .btn.btn-default(onclick="nextPage('frontpage');") Tilbake
 
-    h1 Evaluer brygg
+    h1.text-center Evaluer brygg
 
     with brew
         h3= title
-        p= brewer
         p= description
     br
     br
     +autoForm(collection="Brew" id="editBrewForm" doc=brew type="update")
-        +afQuickField(name="totalEval")
-        +afQuickField(name="bitterEval")
-        +afQuickField(name="fullnessEval")
-        +afQuickField(name="sweetEval")
+        p
+            label Totalvurdering
+            div: span.star-rating
+                input(type="radio" name="totalEval" value="1")
+                i
+                input(type="radio" name="totalEval" value="2")
+                i
+                input(type="radio" name="totalEval" value="3")
+                i
+                input(type="radio" name="totalEval" value="4")
+                i
+                input(type="radio" name="totalEval" value="5")
+                i
+        p
+            label Bitterhet
+            div: span.star-rating
+                input(type="radio" name="bitterEval" value="1")
+                i
+                input(type="radio" name="bitterEval" value="2")
+                i
+                input(type="radio" name="bitterEval" value="3")
+                i
+                input(type="radio" name="bitterEval" value="4")
+                i
+                input(type="radio" name="bitterEval" value="5")
+                i
+        p
+            label Fylde
+            div: span.star-rating
+                input(type="radio" name="fullnessEval" value="1")
+                i
+                input(type="radio" name="fullnessEval" value="2")
+                i
+                input(type="radio" name="fullnessEval" value="3")
+                i
+                input(type="radio" name="fullnessEval" value="4")
+                i
+                input(type="radio" name="fullnessEval" value="5")
+                i
+        p
+            label Sødme
+            div: span.star-rating
+                input(type="radio" name="sweetEval" value="1")
+                i
+                input(type="radio" name="sweetEval" value="2")
+                i
+                input(type="radio" name="sweetEval" value="3")
+                i
+                input(type="radio" name="sweetEval" value="4")
+                i
+                input(type="radio" name="sweetEval" value="5")
+                i
+        
+
         +afQuickField(name="comment" rows="6")
+        
 
         button(type="submit" class="btn btn-primary btn-lg") Lagre vurdering

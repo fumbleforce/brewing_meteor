@@ -11,21 +11,20 @@ body
 
 template(name="main")
     //
-        .bubbles
-            .glass
+    .bubbles
+        .glass
 
-        button.bubble-toggle(style="display:none") Slå av bobler
+    button.bubble-toggle(style="display:none") Slå av bobler
 
     .foam
 
-    .brewer
+    .brewer.row
         .col-xs-6
             if brewer
                 h4.brewer-name #{brewer.name}, #{brewer.brewery}
         unless brewer
-            .col-xs-3
+            .col-xs-6
                 .btn.btn-default(onclick="nextPage('newbrewer');") Ny brygger
-            .col-xs-3
                 .btn.btn-default(onclick="nextPage('login');") Eksisterende brygger
 
     .content
@@ -39,8 +38,8 @@ template(name="main")
             //+oldbrew
         .page.login(style="display:none")
             +login
-        .page.brewinprogress(style="display:none")
-            //+brewinprogress
+        .page.viewbrew(style="display:none")
+            +viewbrew
         .page.archivebrew(style="display:none")
             +archivebrew
         .page.evalbrew(style="display:none")

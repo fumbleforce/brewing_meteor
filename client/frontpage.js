@@ -1,9 +1,11 @@
-Template.main.brewer = function () {
-    var userid = Session.get("user");
-    if (userid)
-        return Brewer.findOne(userid);
-    return false;
-};
+Template.main.helpers({
+    brewer: function () {
+        var userid = Session.get("user");
+        if (userid)
+            return Brewer.findOne(userid);
+        return false;
+    }
+});
 
 Template.frontpage.brewer = Template.main.brewer;
 
@@ -12,22 +14,27 @@ Template.frontpage.events({
         nextPage("newbrew");
     },
     "click .active-brew": function (e) {
-        var brewId = $(e.target).attr("brewId");
+        var brewId = $(e.target).closest("[brewid]").attr("brewId");
         Session.set("activeBrew", brewId);
-        nextPage("evalbrew");
-    }
+        console.log(brewId);
+        if ($(e.target).hasClass("edit")) {
+            nextPage("evalbrew");
+        } else {
+            nextPage("viewbrew");
+        }
+    },
 });
 
-
-Template.frontpage.brews = function () {
-    return Brew.find({
-        brewer: Session.get("user"),
-        dateCompleted: { $exists: false }
-    });
-};
 
 Template.frontpage.helpers({
     brews: function () {
         return Brew.find({ brewer: Session.get("user") });
     },
+    brewer: function () {
+        var userid = Session.get("user");
+        if (userid)
+            return Brewer.findOne(userid);
+        return false;
+    }
 })
+

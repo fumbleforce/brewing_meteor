@@ -1,5 +1,9 @@
 @import "nib"
 
+
+.row
+    margin:0
+
 body, html
     margin: 0
     padding 0
@@ -8,6 +12,8 @@ body, html
     position: relative
     overflow-y: auto
     font-family: 'Josefin Slab', serif;
+    font-size: 16px
+    color white
 
     .foam
         position: fixed
@@ -23,6 +29,8 @@ body, html
         margin: 0 0 0 -400px
         left: 50%
         z-index: 3
+        padding 3px 0
+        color:gray
 
 
     .content
@@ -55,21 +63,45 @@ body, html
                 text-align: center
 
             table
+                width 100%
+                border-collapse: separate
+                
+                tr:first-child td:first-child { border-top-left-radius: 10px; }
+                tr:first-child td:last-child { border-top-right-radius: 10px; }
+                tr:last-child td:first-child { border-bottom-left-radius: 10px; }
+                tr:last-child td:last-child { border-bottom-right-radius: 10px; }
 
                 tr
+                    
                     td, th
                         padding: 5px 15px
 
                 tbody
                     tr:hover
-                        background: orange
+                        background: darkgoldenrod
 
+
+
+.panel-default
+    color:black
 
 
 hr
     border-top: 1px solid
 
+.truncate
+  width 250px
+  white-space nowrap
+  overflow hidden
+  text-overflow ellipsis
 
+.text-center
+    width 100%
+    text-align center
+
+.whitebox
+    border: 1px solid white
+    border-radius 5px
 
 
 @keyframes fromright {
@@ -90,3 +122,130 @@ hr
     }
 }
 
+
+/* 'star-rating' component */
+.starRate 
+    position:relative
+    margin:20px
+    overflow:hidden
+    zoom:1
+    
+    ul 
+        width:160px
+        margin:0
+        padding:0
+    
+        li
+            display:inline
+            list-style:none
+            
+    a
+        background:url(img/star_rate.gif) left top repeat-x
+        float:right
+        margin:0 80px 0 -144px
+        width:80px
+        height:16px
+        background-position:left 16px
+        color:#000
+        text-decoration:none
+        
+        span
+            position:absolute
+            left:-300px
+        
+        &:hover
+            background-position:left -32px
+            
+            span
+                left:90px
+                width:100%
+    
+    b
+        background:url(img/star_rate.gif) left top repeat-x
+        position:absolute
+        z-index:-1
+        width:80px
+        height:16px
+        background-position:left -16px
+        
+    div
+        b
+            left:0px
+            bottom:0px
+            background-position:left top
+        
+
+.star-rating{
+  font-size:0;
+  white-space:nowrap;
+  display:inline-block;
+  width:250px;
+  height:50px;
+  overflow:hidden;
+  position:relative;
+  background:
+      url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjREREREREIiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');
+  background-size: contain;
+  i{
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 20%;
+    z-index: 1;
+    background: 
+        url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjRkZERjg4IiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');  
+    background-size: contain;
+  }
+  input{ 
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    opacity: 0;
+    display:inline-block;
+    width: 20%;
+    height: 100%; 
+    margin:0;
+    padding:0;
+    z-index: 2;
+    position: relative;
+    &:hover + i,
+    &:checked + i{
+      opacity:1;    
+    }
+  }
+  i ~ i{
+    width: 40%;
+  }
+  i ~ i ~ i{
+    width: 60%;
+  }
+  i ~ i ~ i ~ i{
+    width: 80%;
+  }
+  i ~ i ~ i ~ i ~ i{
+    width: 100%;
+  }
+}
+
+//JUST COSMETIC STUFF FROM HERE ON. THESE AREN'T THE DROIDS YOU ARE LOOKING FOR: MOVE ALONG. 
+
+//just styling for the number
+.choice{
+  position: fixed;
+  top: 0;
+  left:0;
+  right:0;
+  text-align: center;
+  padding: 20px;
+  display:block;
+}
+
+.star
+    height: 20px;
+    width: 20px;
+    float:left
+    z-index: 1;
+    background: 
+        url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjRkZERjg4IiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');  
+    background-size: contain;

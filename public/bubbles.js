@@ -2,8 +2,6 @@
 
 function bubbles() {
     var $bubbles = $('.bubbles');
-    console.log("Running bubbles");
-    console.log($bubbles);
     // Settings
     var min_bubble_count = 20, // Minimum number of bubbles
     max_bubble_count = 40, // Maximum number of bubbles
@@ -18,7 +16,6 @@ function bubbles() {
 
     // Create the bubbles
     for (var i = 0; i < bubbleCount; i++) {
-        console.log("Adding bubble");
         $bubbles.append('<div class="bubble-container"><div class="bubble"></div></div>');
     }
 
@@ -108,7 +105,6 @@ function turnGlass () {
 
 
 $(function() {
-    console.log("Going to run bubbles..");
     bubbles();
 
     $('.bubble-toggle').click(function(){
