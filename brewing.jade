@@ -20,8 +20,10 @@ template(name="main")
 
     .brewer.row
         .col-xs-6
-            if brewer
-                h4.brewer-name #{brewer.name}, #{brewer.brewery}
+            .row
+                if brewer
+                    .pull-left.btn.btn-default(onclick="Session.set('user', undefined);", style="margin-right:20px") Logg ut
+                    h4.pull-left.brewer-name #{brewer.name}, #{brewer.brewery}
         unless brewer
             .col-xs-6
                 .btn.btn-default(onclick="nextPage('newbrewer');") Ny brygger

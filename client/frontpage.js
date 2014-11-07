@@ -16,7 +16,6 @@ Template.frontpage.events({
     "click .active-brew": function (e) {
         var brewId = $(e.target).closest("[brewid]").attr("brewId");
         Session.set("activeBrew", brewId);
-        console.log(brewId);
         if ($(e.target).hasClass("edit")) {
             nextPage("evalbrew");
         } else {
@@ -28,6 +27,9 @@ Template.frontpage.events({
 
 Template.frontpage.helpers({
     brews: function () {
+        if (Session.get("user") == undefined) {
+            return Brew.find({});
+        }
         return Brew.find({ brewer: Session.get("user") });
     },
     brewer: function () {

@@ -36,4 +36,5 @@ template(name="frontpage")
                             td= sweetEval
                             td= bitterEval
                             td.truncate(style="max-width:100px")= comment
-                            td: button.btn.btn-default.edit Vurder
+                            if brewer
+                                td: button.btn.btn-default.edit Vurder

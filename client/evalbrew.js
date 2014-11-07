@@ -25,6 +25,14 @@ AutoForm.hooks({
             doc.bitterEval = +$("input[name='bitterEval']:checked").val();
             doc.fullnessEval = +$("input[name='fullnessEval']:checked").val();
             doc.sweetEval = +$("input[name='sweetEval']:checked").val();
+            var b = Brew.update(Session.get("activeBrew"), { $set: {
+                    totalEval: doc.totalEval,
+                    bitterEval: doc.bitterEval,
+                    fullnessEval: doc.fullnessEval,
+                    sweetEval: doc.sweetEval,
+                    comment: doc.comment
+                }
+            });
             return doc;
         },
 
